@@ -11,3 +11,17 @@ public function doesUserExists($user_id = '')
     }
     return (bool) get_user_by('id', $user_id);
 }
+
+/**
+* Function returns the current page id in wordpress
+* @return int/boolean page id if it is valid else false
+**/
+public function getCurrentPageId()
+{
+    $current_page_url = home_url().$_SERVER["REQUEST_URI"];
+    $current_page_id = url_to_postid($current_page_url);
+    if ($current_page_id > 0) {
+        return $current_page_id;
+    }
+    return false;
+}
